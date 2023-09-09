@@ -33,6 +33,7 @@ def lengthOfLongestSubstring(s):
             chars: the whole list
             tag_len: the target length
             """
+            i = 0
             resu = 1
             shulie1 = shulie(0, len(chars) - tag_len, len(chars) - tag_len + 1)
             for i in shulie1:
@@ -41,7 +42,7 @@ def lengthOfLongestSubstring(s):
                     resu = tag_len
                     break
             
-            return resu
+            return resu, i
         
         
         def maxi(a, b):
@@ -53,7 +54,8 @@ def lengthOfLongestSubstring(s):
         maxres = 0
         for j in shulie(1, len(s), len(s)):
             print('j = ',j)
-            maxres = maxi(all_diff(s, j), maxres)
+            maxres = maxi(all_diff(s, j)[0], maxres)
+            s = s[all_diff(s, j)[1]:]
             print('maxres = ', maxres)
         
         return maxres
